@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Gallery</title>
+    <i class="ri-image-fill"></i>
+    <style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+/* Styline the Heading of Image Gallery */
+.heading{ 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	background: #121FCF;
+	background: linear-gradient(to right, #0e85e0 0%, #26ff1a 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+/* Styling gallery section where all images are */
+.gallery {
+	width: 90%;
+	margin:0 auto;
+	display:grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 20px;
+	justify-content:center;
+	align-items: center; 
+}
+
+/* Styling Particular Image */
+.gallery-img {
+	width: 200px;
+	height: 200px;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+/* onHover image will expand little bit */
+.gallery-img:hover {
+	transform: scale(1.1);
+	cursor: zoom-in;
+}
+/* This section will be seen when we click on image */
+.image-popup-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* close button when we want to close the bigger image */
+.close-button {
+	position: absolute;
+	top: 20px;
+	right: 50px;
+	font-size:60px;
+	color: #fff;
+	cursor: pointer;
+}
+.close-button:hover{
+	color: red;
+}
+
+/* when we click on the image it will expand in bigger size and will displayed 
+at middle of screen */
+#popupImage {
+	display: block;
+	max-width: 80%;
+	max-height: 80%;
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* Making images more responsive for smaller size device */
+@media (max-width:670px) {
+	.gallery{
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		grid-gap: 10px;
+	}
+	.gallery-img{
+		width:150px;
+		height: 150px;
+	}
+
+	.heading{
+		font-size: 20px;
+	}
+}
+
+    </style>
+</head>
+<body>
+<!-- Heading Name -->
+<div class="heading">
+	<h1 style="font-family: cursive;">NATURE Gallery</h1>
+</div>
+	<!-- Image Gallery section all image in one div -->
+	<div class="gallery">
+<img src=
+"https://media.istockphoto.com/id/517188688/photo/mountain-landscape.webp?
+b=1&s=170667a&w=0&k=20&c=0FSPkjeK1u_EksXE1VrATh7MD74dnFiVmMmaMhtSYwI=" 
+alt="Image 2" class="gallery-img" onclick="showImage(src)">
+<img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_640.jpg"
+alt="Image 3" class="gallery-img" onclick="showImage(src)">
+<img src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=
+pexels-pixabay-268533.jpg&fm=jpg" alt="Image 4" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse2.mm.bing.net/th?id=OIP.J2x7nVPF2xsVLjqQ70Z_dAHaE8&pid=Api&P=0&h=180" alt="Image 5" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse3.mm.bing.net/th?id=OIP.c4MCiDFgSGLsR_7-4-j0PwHaEK&pid=Api&P=0&h=180" 
+alt="Image 6" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse3.mm.bing.net/th?id=OIP.75lSj-ZIXg_leKVo7RnFOAHaEo&pid=Api&P=0&h=180"
+alt="Image 7" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse1.mm.bing.net/th?id=OIP.c5IHavrnbntQnqpWgorTowHaEo&pid=Api&P=0&h=180" 
+alt="Image 8" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse3.mm.bing.net/th?id=OIP.3iY89F86sd4-g4Y5jG6diwHaE8&pid=Api&P=0&h=180"
+alt="Image 9" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse3.mm.bing.net/th?id=OIP.BtI4FgSh3sHaw3II6Zi3rgHaEo&pid=Api&P=0&h=180" 
+alt="Image 10" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse2.mm.bing.net/th?id=OIP.ozt6R8c5gsRRjD7cHOoSKAHaEo&pid=Api&P=0&h=180" 
+alt="Image 11" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse1.mm.bing.net/th?id=OIP.7MbHqzL_qyeozGLQhM_W4QHaEN&pid=Api&P=0&h=180" 
+alt="Image 12" class="gallery-img" onclick="showImage(src)">
+<img src="https://tse1.mm.bing.net/th?id=OIP.fb64DtX-XH-YcdRjE6wHMAHaE8&pid=Api&P=0&h=180" 
+alt="Image 13" class="gallery-img" onclick="showImage(src)">		 
+</div>
+
+<!-- Image containter where image will show in big size -->
+	<div class="image-popup-container" id="imagePopup">
+		<span class="close-button" onclick="closeImage()">×</span>
+		<img src="" alt="Popup Image" id="popupImage">
+	</div>
+	<script>
+        // function to show image when we click on a image
+function showImage(imageSrc) {
+let popupImage = document.getElementById("popupImage");
+popupImage.src = imageSrc;
+
+let imagePopup = document.getElementById("imagePopup");
+imagePopup.style.display = "block";
+document.body.style.overflow = "hidden";
+}
+// function to hide the image when we click on cross button
+function closeImage() {
+let imagePopup = document.getElementById("imagePopup");
+imagePopup.style.display = "none";
+document.body.style.overflow = "auto";
+}
+
+    </script>
+</body>
+</html>
